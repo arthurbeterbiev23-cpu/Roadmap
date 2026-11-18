@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roadmap Full Stack 70% dan Keamanan 30%</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#eef2f6;--card:#ffffff;--ink:#14202b;--mut:#566574;--line:#d5dde5;
+  --web:#2457e6;--sec:#b3205f;--pkl:#5b6b7a;--webtint:#e3ebff;--sectint:#fbe4ee;
+  --hf:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --bf:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1820;--card:#17232e;--ink:#e8eef4;--mut:#9aabbb;--line:#2a3a48;
+  --web:#7da2ff;--sec:#ff8ab8;--pkl:#9aabbb;--webtint:#1b2d52;--sectint:#4a1c33;}}
+:root[data-theme="dark"]{
+  --bg:#0f1820;--card:#17232e;--ink:#e8eef4;--mut:#9aabbb;--line:#2a3a48;
+  --web:#7da2ff;--sec:#ff8ab8;--pkl:#9aabbb;--webtint:#1b2d52;--sectint:#4a1c33;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--bf);font-size:16px;line-height:1.55}
+main{max-width:760px;margin:0 auto;padding:28px 18px 56px}
+h1{font-family:var(--hf);font-weight:800;font-size:clamp(2rem,7vw,3.1rem);line-height:1.05;margin:0 0 10px;letter-spacing:-.02em}
+h2{font-family:var(--hf);font-weight:600;font-size:1.3rem;margin:36px 0 12px}
+p{margin:0 0 10px;max-width:62ch}
+.lead{color:var(--mut)}
+.bars{display:grid;gap:14px;margin:22px 0 6px}
+.bar-row{display:grid;grid-template-columns:96px 1fr 56px;align-items:center;gap:12px;font-weight:500}
+.track{height:14px;border-radius:7px;background:var(--line);overflow:hidden}
+.fill{height:100%;width:0;border-radius:7px;transition:width .35s ease}
+.bar-row output{text-align:right;font-variant-numeric:tabular-nums;color:var(--mut)}
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.day{border-radius:10px;padding:12px 8px;min-height:92px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;font-size:.92rem}
+.day b{font-family:var(--hf);font-size:1.02rem}
+.day.w{background:var(--web)}
+.day.s{background:var(--sec)}
+.day.m{background:linear-gradient(135deg,var(--web) 0 50%,var(--sec) 50% 100%)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .day{color:#0f1820}}
+:root[data-theme="dark"] .day{color:#0f1820}
+.split{display:flex;height:10px;border-radius:5px;overflow:hidden;margin-top:12px}
+.split i{display:block}
+.note{font-size:.9rem;color:var(--mut);margin-top:10px}
+.rules{margin:0;padding-left:20px}
+.rules li{margin-bottom:6px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;padding:15px 16px;min-height:52px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"";width:9px;height:9px;border-right:2px solid var(--mut);border-bottom:2px solid var(--mut);transform:rotate(-45deg);transition:transform .15s;flex:none}
+details[open]>summary::before{transform:rotate(45deg)}
+.mt{font-family:var(--hf);font-weight:600;font-size:1.08rem;flex:1}
+.mt small{display:block;font-family:var(--bf);font-weight:400;font-size:.85rem;color:var(--mut)}
+.cnt{font-variant-numeric:tabular-nums;color:var(--mut);font-weight:500}
+details.done .cnt{color:var(--web);font-weight:700}
+.body{padding:2px 16px 16px;border-top:1px solid var(--line)}
+.goal{margin:14px 0 8px;padding:10px 12px;border-left:4px solid var(--web);background:var(--webtint);border-radius:0 8px 8px 0;font-size:.95rem}
+.tasks{list-style:none;margin:0;padding:0}
+.tasks label{display:flex;gap:12px;align-items:flex-start;padding:9px 0;cursor:pointer;border-bottom:1px solid var(--line)}
+.tasks li:last-child label{border-bottom:0}
+.tasks input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--web)}
+.tasks input:checked+span{color:var(--mut);text-decoration:line-through}
+.tag{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:baseline}
+.tag.w{background:var(--web)}.tag.s{background:var(--sec)}.tag.p{background:var(--pkl)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.9rem;color:var(--mut);margin-top:14px}
+button{font:inherit;font-weight:500;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:8px;padding:9px 14px;cursor:pointer;min-height:44px}
+button:hover{border-color:var(--mut)}
+:focus-visible{outline:3px solid var(--web);outline-offset:2px}
+@media(max-width:480px){.bar-row{grid-template-columns:80px 1fr 48px;gap:8px}.day{font-size:.82rem;padding:10px 6px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Roadmap Full Stack dan Keamanan</h1>
+  <p class="lead">Enam bulan, satu jam sehari, lima hari seminggu. Tiap bulan punya satu hasil jadi sebagai garis finish. Centang tugas yang sudah selesai; progres tersimpan di browser ini.</p>
+
+  <div class="bars" aria-label="Progres belajar">
+    <div class="bar-row"><span>Full stack</span><div class="track"><div class="fill" id="f-w" style="background:var(--web)"></div></div><output id="o-w">0%</output></div>
+    <div class="bar-row"><span>Keamanan</span><div class="track"><div class="fill" id="f-s" style="background:var(--sec)"></div></div><output id="o-s">0%</output></div>
+    <div class="bar-row"><span>Keseluruhan</span><div class="track"><div class="fill" id="f-a" style="background:var(--ink)"></div></div><output id="o-a">0%</output></div>
+  </div>
+
+  <h2>Jadwal mingguan</h2>
+  <div class="week">
+    <div class="day w"><b>Senin</b><span>Full stack<br>60 menit</span></div>
+    <div class="day w"><b>Selasa</b><span>Full stack<br>60 menit</span></div>
+    <div class="day w"><b>Rabu</b><span>Full stack<br>60 menit</span></div>
+    <div class="day m"><b>Kamis</b><span>30 + 30<br>menit</span></div>
+    <div class="day s"><b>Jumat</b><span>Keamanan<br>60 menit</span></div>
+  </div>
+  <div class="split" aria-hidden="true"><i style="width:70%;background:var(--web)"></i><i style="width:30%;background:var(--sec)"></i></div>
+  <p class="note">Full stack 3,5 jam (70%), keamanan 1,5 jam (30%) per minggu. Kalau satu minggu berantakan, kerjakan jatah full stack dulu dan geser keamanannya ke minggu depan.</p>
+
+  <h2>Aturan main</h2>
+  <ul class="rules">
+    <li>Tugas harian 20 sampai 60 menit. Sebelum tutup laptop, tulis satu baris “besok: …”.</li>
+    <li>Mentok lebih dari 30 menit? Cari pesan errornya, tanya teman atau AI, lalu lanjut.</li>
+    <li>Kalau waktu mepet, kejar versi minimal dari hasil bulan itu.</li>
+    <li>Setor progres ke satu teman tiap minggu.</li>
+    <li>Latihan keamanan hanya di platform legal atau lab di laptop sendiri.</li>
+  </ul>
+
+  <h2>Enam bulan</h2>
+  <div id="months"></div>
+  <div class="legend"><span><i class="tag w"></i>Full stack</span><span><i class="tag s"></i>Keamanan</span><span><i class="tag p"></i>Persiapan PKL</span></div>
+
+  <p style="margin-top:28px"><button id="reset" type="button">Reset semua centang</button></p>
+</main>
+
+<script>
+var M=[
+{n:"Fondasi",o:"Halaman profil pribadi yang online di GitHub Pages.",t:[
+["w","HTML: heading, paragraf, list, link, gambar"],
+["w","CSS: warna, font, box model"],
+["w","Layout dengan Flexbox"],
+["w","Halaman responsif dengan media query"],
+["w","Buat akun GitHub, commit pertama"],
+["w","Deploy halaman profil ke GitHub Pages"],
+["s","Daftar TryHackMe, mulai jalur Pre Security"],
+["s","Dasar jaringan: IP, DNS, HTTP"],
+["s","Perintah dasar Linux"]]},
+{n:"JavaScript",o:"Aplikasi kecil, misalnya to-do list atau kalkulator.",t:[
+["w","Variabel, tipe data, fungsi, kondisi"],
+["w","Array, object, dan loop"],
+["w","DOM: ambil dan ubah elemen"],
+["w","Event listener: klik dan input"],
+["w","Fetch API: ambil data dari API publik"],
+["w","Bangun to-do list atau kalkulator"],
+["s","Linux lanjutan: permission dan file"],
+["s","Konsep hash dan enkripsi"],
+["s","Satu lab kriptografi dasar di TryHackMe"]]},
+{n:"Backend dan database",o:"Aplikasi CRUD, misalnya pendataan inventaris sederhana.",t:[
+["w","SQL: SELECT, INSERT, UPDATE, DELETE"],
+["w","JOIN dan relasi antar tabel"],
+["w","Node.js dan Express: route pertama"],
+["w","Hubungkan Express ke MySQL atau PostgreSQL"],
+["w","Selesaikan CRUD lengkap"],
+["s","Pelajari SQL injection: konsep dan satu lab"],
+["s","Pelajari XSS: konsep dan satu lab"],
+["s","Tulis catatan: di mana kode CRUD lo bisa jebol"]]},
+{n:"Full stack nyambung",o:"Aplikasi dengan fitur login yang sudah online.",t:[
+["w","Fitur register dan login"],
+["w","Hashing password dengan bcrypt"],
+["w","Session atau JWT"],
+["w","Sambungkan frontend ke backend"],
+["w","Deploy aplikasi"],
+["s","Baca OWASP Top 10"],
+["s","Kerjakan lab di PortSwigger Web Security Academy"],
+["s","Jalankan OWASP Juice Shop di laptop sendiri"]]},
+{n:"Proyek utama diamankan",o:"Proyek full stack versi minimal plus catatan celah dan cara memperbaikinya.",t:[
+["w","Tentukan versi minimal sistem, misalnya sistem informasi pondok"],
+["w","Rancang tabel database"],
+["w","Bangun fitur inti"],
+["w","Rapikan tampilan dan deploy"],
+["s","Audit proyek sendiri dengan checklist OWASP"],
+["s","Perbaiki celah yang ketemu"],
+["s","Coba satu CTF pemula di picoCTF"]]},
+{n:"Portofolio dan PKL",o:"GitHub rapi, 2 sampai 3 write-up, dan CV siap kirim.",t:[
+["w","README yang jelas di tiap proyek"],
+["w","Rapikan repo dan kode"],
+["s","Tulis 2 sampai 3 write-up dari lab atau CTF"],
+["s","Tambahkan catatan keamanan di README proyek utama"],
+["p","Latihan jelasin proyek lo dalam 2 menit"],
+["p","Siapkan CV"],
+["p","Cari dan tanya lowongan PKL"]]}
+];
+var KEY="roadmap-fs-sec-v1",S={};
+try{S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){S={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+var root=document.getElementById("months");
+function build(){
+  root.innerHTML="";
+  M.forEach(function(m,i){
+    var d=document.createElement("details");d.id="d"+i;if(i===0)d.open=true;
+    var s=document.createElement("summary");
+    s.innerHTML='<span class="mt">Bulan '+(i+1)+': '+m.n+'<small></small></span><span class="cnt"></span>';
+    s.querySelector("small").textContent="Hasil: "+m.o;
+    d.appendChild(s);
+    var b=document.createElement("div");b.className="body";
+    var ul=document.createElement("ul");ul.className="tasks";
+    m.t.forEach(function(t,j){
+      var id="m"+i+"t"+j,li=document.createElement("li"),lb=document.createElement("label"),
+      cb=document.createElement("input"),sp=document.createElement("span"),tg=document.createElement("i");
+      cb.type="checkbox";cb.checked=!!S[id];
+      cb.addEventListener("change",function(){if(cb.checked)S[id]=1;else delete S[id];save();update()});
+      tg.className="tag "+t[0];sp.appendChild(tg);sp.appendChild(document.createTextNode(t[1]));
+      lb.appendChild(cb);lb.appendChild(sp);li.appendChild(lb);ul.appendChild(li);
+    });
+    b.appendChild(ul);d.appendChild(b);root.appendChild(d);
+  });
+}
+function pct(a,b){return b?Math.round(a/b*100):0}
+function update(){
+  var c={w:[0,0],s:[0,0],p:[0,0]};
+  M.forEach(function(m,i){
+    var done=0;
+    m.t.forEach(function(t,j){c[t[0]][1]++;if(S["m"+i+"t"+j]){c[t[0]][0]++;done++}});
+    var d=document.getElementById("d"+i);
+    d.querySelector(".cnt").textContent=done+"/"+m.t.length;
+    d.classList.toggle("done",done===m.t.length);
+  });
+  var w=pct(c.w[0],c.w[1]),s=pct(c.s[0],c.s[1]),
+  a=pct(c.w[0]+c.s[0]+c.p[0],c.w[1]+c.s[1]+c.p[1]);
+  [["w",w],["s",s],["a",a]].forEach(function(x){
+    document.getElementById("f-"+x[0]).style.width=x[1]+"%";
+    document.getElementById("o-"+x[0]).textContent=x[1]+"%";
+  });
+}
+var rb=document.getElementById("reset"),rt;
+rb.addEventListener("click",function(){
+  if(rb.dataset.arm){S={};save();build();update();rb.textContent="Reset semua centang";delete rb.dataset.arm;clearTimeout(rt);return}
+  rb.dataset.arm=1;rb.textContent="Yakin? Klik sekali lagi";
+  rt=setTimeout(function(){rb.textContent="Reset semua centang";delete rb.dataset.arm},3500);
+});
+build();update();
+</script>
+</body>
+</html>
